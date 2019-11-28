@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="header">
+<span mat-dialog-title>{{task.text}}</span>
+  <span> {{task.date | date:'dd-MM,  HH:mm'}}</span>
+  </div>
+
+  <div class="description">
+    <textarea matInput type="text" placeholder="Description" *ngIf="!task.description" #input (keyup.enter)="addDescription(input.value)"> </textarea>
+  </div>
+  <span>{{task.description}} </span>
+  </div>

@@ -1,5 +1,5 @@
 export class Task {
-  color?: string;
+  description?: string;
   text: string;
-  date?: string;
+  date: string;
 }

@@ -1,0 +1,27 @@
+textarea {
+  height: 200px;
+}
+
+span {
+  word-break: break-all;
+}
+
+.header span {
+  max-width: 300px;
+}
+
+.container {
+  height: 300px;
+  width: 400px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
+  justify-content: center;
+  display: flex;
+  word-break: break-all;
+}

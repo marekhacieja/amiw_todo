@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {Task} from './task';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {DialogComponent} from './dialog/dialog.component';
+import {MatDialog} from '@angular/material';
+import {TaskService} from './service/task.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +11,15 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  todo: Task[] = [
-    {color: 'red', text: 'zad1', date: new Date().toString()},
-    {color: 'green', text: 'zad2', date: new Date().toString()},
-    {color: 'green', text: 'zad3', date: new Date().toString()},
-    {color: 'red', text: 'zad4', date: new Date().toString()},
-    {color: 'red', text: 'zad5', date: new Date().toString()},
-    {color: 'red', text: 'zad6', date: new Date().toString()}
-  ];
-
+  todo: Task[] = [];
   done: Task[] = [];
 
+  constructor(public dialog: MatDialog, private taskService: TaskService) {
+    this.taskService.getTodoTasksObs().subscribe((tasks: Array<Task>) =>
+      this.todo = tasks);
+    this.taskService.getDoneTasksObs().subscribe((tasks: Array<Task>) =>
+      this.done = tasks);
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -28,35 +29,29 @@ export class AppComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      this.taskService.setTodoTasksToLocalStorage();
+      this.taskService.setDoneTasksToLocalStorage();
     }
+  }
+
+  openDialog(task: Task): void {
+    this.dialog.open(DialogComponent, {data: task});
   }
 
   addTask(taskText: string) {
-    const newTask = new Task();
-    newTask.text = taskText;
-    this.todo.push(newTask);
-  }
-
-  deleteTaskFromTodo(task: Task) {
-    const index: number = this.todo.indexOf(task);
-    if (index !== -1) {
-      this.todo.splice(index, 1);
-    }
+    this.taskService.addTask(taskText);
   }
 
   addTaskToDone(task: Task) {
-    this.deleteTaskFromTodo(task);
-    this.done.push(task);
+    this.taskService.addTaskToDone(task);
+  }
+
+  deleteTaskFromTodo(task: Task) {
+    this.taskService.deleteTaskFromTodo(task);
   }
 
   deleteTaskFromDone(task: Task) {
-    const index: number = this.done.indexOf(task);
-    if (index !== -1) {
-      this.done.splice(index, 1);
-    }
+    this.taskService.deleteTaskFromDone(task);
   }
 
-  showMore(task: Task) {
-    
-  }
 }
