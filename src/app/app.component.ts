@@ -29,9 +29,9 @@ export class AppComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-      this.taskService.setTodoTasksToLocalStorage();
-      this.taskService.setDoneTasksToLocalStorage();
     }
+    this.taskService.setTodoTasksToLocalStorage();
+    this.taskService.setDoneTasksToLocalStorage();
   }
 
   openDialog(task: Task): void {
