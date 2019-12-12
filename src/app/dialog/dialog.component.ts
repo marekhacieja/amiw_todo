@@ -8,11 +8,8 @@ import {TaskService} from '../service/task.service';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public task: Task, private taskService: TaskService) {}
-
-  ngOnInit() {
-  }
 
   addDescription(value: string) {
     this.taskService.addDescription(value, this.task);

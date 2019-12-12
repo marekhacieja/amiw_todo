@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Task} from '../task';
 import {BehaviorSubject, Observable} from 'rxjs';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class TaskService {
       return;
     }
     const newTask = new Task();
-    newTask.date = new Date().toString();
+    newTask.timestamp = moment().format();
     newTask.text = taskText;
     this.todo.push(newTask);
     this.setTodoTasksToLocalStorage();
