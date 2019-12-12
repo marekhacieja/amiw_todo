@@ -9,7 +9,6 @@ import {TaskService} from '../service/task.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-
   constructor(@Inject(MAT_DIALOG_DATA) public task: Task, private taskService: TaskService) {}
 
   ngOnInit() {

@@ -19,7 +19,7 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let task of todo" cdkDrag>{{task.text}}
-        <div>
+        <div class="buttons">
         <button mat-button (click)="addTaskToDone(task)"><mat-icon>done</mat-icon></button>
         <button mat-button (click)="deleteTaskFromTodo(task)"><mat-icon>delete</mat-icon></button>
         <button mat-button (click)="openDialog(task)"><mat-icon>more_horiz</mat-icon></button>
@@ -37,7 +37,7 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let task of done" cdkDrag>{{task.text}}
-        <div>
+        <div class="buttons">
           <button mat-button (click)="deleteTaskFromDone(task)"><mat-icon>delete</mat-icon></button>
           <button mat-button (click)="openDialog(task)"><mat-icon>more_horiz</mat-icon></button>
         </div>
