@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import { Task } from '../task';
+import {Task} from '../task';
 import {TaskService} from '../service/task.service';
 
 @Component({
@@ -9,7 +9,8 @@ import {TaskService} from '../service/task.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public task: Task, private taskService: TaskService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public task: Task, private taskService: TaskService) {
+  }
 
   addDescription(value: string) {
     this.taskService.addDescription(value, this.task);

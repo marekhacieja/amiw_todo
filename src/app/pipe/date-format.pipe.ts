@@ -10,7 +10,7 @@ export class DateFormatPipe implements PipeTransform {
     return moment(value).calendar(null, {
       sameDay: '[Today] | HH:mm',
       lastDay: '[Yesterday] | HH:mm',
-      lastWeek : 'DD/MM/YYYY | HH:mm',
+      lastWeek: 'DD/MM/YYYY | HH:mm',
       sameElse: 'DD/MM/YYYY | HH:mm'
     });
   }
